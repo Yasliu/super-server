@@ -1,0 +1,37 @@
+For connecting to the Database, you need to paste this in the
+dependencies section of the pom.xml file:
+
+<dependency>
+    <groupId>org.xerial</groupId>
+    <artifactId>sqlite-jdbc</artifactId>
+    <version>3.46.0.0</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.hibernate.orm</groupId>
+    <artifactId>hibernate-community-dialects</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+
+Afterwards you need to go to the application.properties and add this:
+
+-- Ensure that your .db is in the same folder as your main folder--
+spring.datasource.url=jdbc:sqlite:gradebook.db
+spring.datasource.driver-class-name=org.sqlite.JDBC
+
+-- This is the dialect for SQLite--
+spring.jpa.database-platform=org.hibernate.community.dialect.SQLiteDialect
+
+-- This is to show the SQL queries in the console--
+spring.jpa.show-sql=true
+
+spring.jpa.hibernate.ddl-auto=update

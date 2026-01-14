@@ -1,0 +1,11 @@
+### Test 1: Get all students
+GET http://localhost:8080/students
+
+###Test 2: Add a new student
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "score": 95.5
+}

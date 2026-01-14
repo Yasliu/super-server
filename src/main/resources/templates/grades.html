@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>GradeBook</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1> Class Gradebook </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${studentList}">
+                <td th:text="${student.id}">1</td>
+                <td th:text="${student.name}">Steve</td>
+                <td th:text="${student.score}">95.5</td>
+                <td>
+                    <a th:href="@{/delete(id=${student.id})}" style="color: red;">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd;">
+        <h3> Add new Student </h3>
+
+        <form action="/grades" method="post">
+            <label> Name: </label>
+            <input type="text" name="name" required placeholder="Enter Name" />
+
+            <label> Score: </label>
+            <input type="number" step="0.1" name="score" required placeholder="0.0" />
+
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+</body>
+
+</html>
